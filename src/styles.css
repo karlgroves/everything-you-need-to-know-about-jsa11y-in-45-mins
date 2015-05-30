@@ -1,0 +1,158 @@
+header{
+    height: 50px;
+    line-height: 50px;
+    font-weight: bold;
+    padding-left: 10%;
+    padding-right: 10%;
+    background-color: #eee;
+}
+
+header #tagline{
+    float: left;
+}
+
+header #sign-in{
+    float: right;
+    height: 30px;
+    width: auto;
+    line-height: 20px;
+    margin-top: 10px;
+    background-color: #369;
+    color: #eee;
+    border: 1px solid #039;
+    border-radius: 5px;
+}
+
+header #sign-in:focus, header #sign-in:hover{
+    background-color: #fff;
+    color: #369;
+    outline: none;
+}
+
+h1 span{
+    font-size: 16px;
+}
+
+nav ul {
+    list-style: none;
+    background-color: #444;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+nav li {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.2em;
+    line-height: 40px;
+    text-align: left;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    padding-left: 15px;
+    border-bottom: 1px solid #888;
+    transition: .3s background-color;
+}
+
+nav a:hover, nav a:focus{
+    background-color: #005f5f;
+}
+
+nav li a:hover > ul, nav li a:focus > ul {
+    display: block;
+}
+
+nav a.active {
+    background-color: #aaa;
+    color: #444;
+    cursor: default;
+}
+
+/* Sub Menus */
+nav li li {
+    font-size: .8em;
+}
+
+/*******************************************
+   Style menu for larger screens
+
+   Using 650px (130px each * 5 items), but ems
+   or other values could be used depending on other factors
+********************************************/
+
+@media screen and (min-width: 650px) {
+    nav li {
+        width: 130px;
+        border-bottom: none;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.4em;
+        display: inline-block;
+        margin-right: -4px;
+    }
+
+    nav a {
+        border-bottom: none;
+    }
+
+    nav > ul > li {
+        text-align: center;
+    }
+
+    nav > ul > li > a {
+        padding-left: 0;
+    }
+
+    /* Sub Menus */
+    nav li ul {
+        position: absolute;
+        display: none;
+        width: inherit;
+    }
+
+    nav li:hover ul, nav li:focus ul {
+        display: block;
+    }
+
+    nav li ul li {
+        display: block;
+    }
+}
+
+
+main{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+
+footer{
+    background-color: #369;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-right: 5%;
+    padding-left: 5%;
+    color: #fff;
+    text-align: center;
+}
+
+footer ul, footer ul li{
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+footer ul li a{
+    color: #eee;
+    margin-right: .5em;
+}
+
+#tehDialog{
+    display: none;
+}
+
+#retrieve{
+    display: none;
+}

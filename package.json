@@ -1,0 +1,32 @@
+{
+  "name": "intuit-fe-summit-2015",
+  "version": "0.0.1",
+  "description": "accesibility enhancements for jQueryUI dialog()",
+  "keywords": [
+    "accessibility"
+  ],
+  "homepage": "https://github.com/karlgroves/a11yDialog",
+  "bugs": "https://github.com/karlgroves/a11yDialog/issues",
+  "author": {
+    "name": "Karl Groves",
+    "email": "karlgroves@gmail.com",
+    "url": "https://github.com/karlgroves"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:karlgroves/a11yDialog.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.10.0",
+    "grunt-contrib-watch": "~0.6.1",
+    "time-grunt": "~1.0.0",
+    "load-grunt-tasks": "~1.0.0",
+    "jshint-stylish": "~1.0.0"
+  }
+}
