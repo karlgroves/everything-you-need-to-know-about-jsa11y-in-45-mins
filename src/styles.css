@@ -1,4 +1,4 @@
-header{
+header {
     height: 50px;
     line-height: 50px;
     font-weight: bold;
@@ -7,11 +7,11 @@ header{
     background-color: #eee;
 }
 
-header #tagline{
+header #tagline {
     float: left;
 }
 
-header #sign-in{
+header #sign-in {
     float: right;
     height: 30px;
     width: auto;
@@ -23,13 +23,13 @@ header #sign-in{
     border-radius: 5px;
 }
 
-header #sign-in:focus, header #sign-in:hover{
+header #sign-in:focus, header #sign-in:hover {
     background-color: #fff;
     color: #369;
     outline: none;
 }
 
-h1 span{
+h1 span {
     font-size: 16px;
 }
 
@@ -57,7 +57,7 @@ nav a {
     transition: .3s background-color;
 }
 
-nav a:hover, nav a:focus{
+nav a:hover, nav a:focus {
     background-color: #005f5f;
 }
 
@@ -122,13 +122,12 @@ nav li li {
     }
 }
 
-
-main{
+main {
     padding-left: 5%;
     padding-right: 5%;
 }
 
-footer{
+footer {
     background-color: #369;
     padding-top: 1em;
     padding-bottom: 1em;
@@ -138,21 +137,87 @@ footer{
     text-align: center;
 }
 
-footer ul, footer ul li{
+footer ul, footer ul li {
     display: inline;
     margin: 0;
     padding: 0;
 }
 
-footer ul li a{
+footer ul li a {
     color: #eee;
     margin-right: .5em;
 }
 
-#tehDialog{
+#overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000000;
+    opacity: .25;
+    filter: alpha(opacity=25);
+    -moz-opacity: .25;
+    z-index: 101;
+}
+
+#tehDialog {
+    display: none;
+    position: fixed;
+    width: 380px;
+    height: 250px;
+    top: 50%;
+    left: 50%;
+    margin-left: -190px;
+    margin-top: -100px;
+    background-color: #ffffff;
+    border: 2px solid #333;
+    border-radius: 10px;
+    padding: 0;
+    z-index: 102;
+    font-family: Verdana;
+    font-size: 10pt;
+}
+
+#tehDialog h2 {
+    margin: 0;
+    border-bottom: solid 2px #333;
+    background-color: #333;
+    padding: 4px;
+    color: White;
+    font-weight: bold;
+}
+
+.dialog_content {
+    padding: 1em;
+}
+
+.web_dialog_title a {
+    color: White;
+    text-decoration: none;
+}
+
+.align_right {
+    text-align: right;
+}
+
+#retrieve {
     display: none;
 }
 
-#retrieve{
-    display: none;
+#tehDialog form label {
+    display: block;
+    margin-bottom: 1.5em;
+}
+
+#tehDialog form label input {
+    width: 350px;
+}
+
+#tehDialog form label span {
+    display: block;
 }

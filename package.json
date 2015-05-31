@@ -1,12 +1,12 @@
 {
   "name": "intuit-fe-summit-2015",
   "version": "0.0.1",
-  "description": "accesibility enhancements for jQueryUI dialog()",
+  "description": "Everything you need to know about JavaScript accessibility in 40 minutes",
   "keywords": [
     "accessibility"
   ],
-  "homepage": "https://github.com/karlgroves/a11yDialog",
-  "bugs": "https://github.com/karlgroves/a11yDialog/issues",
+  "homepage": "https://github.com/karlgroves/intuit-fe-summit-2015",
+  "bugs": "https://github.com/karlgroves/intuit-fe-summit-2015/issues",
   "author": {
     "name": "Karl Groves",
     "email": "karlgroves@gmail.com",
@@ -14,7 +14,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:karlgroves/a11yDialog.git"
+    "url": "git@github.com:karlgroves/intuit-fe-summit-2015.git"
   },
   "licenses": [
     {

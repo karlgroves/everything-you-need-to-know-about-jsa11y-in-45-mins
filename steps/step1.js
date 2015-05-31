@@ -1,3 +1,14 @@
-$(document).ready(function(){
+'use strict';
 
-});
+
+var dialog = {
+
+    open: function () {
+
+    },
+
+    close: function () {
+
+    }
+
+};

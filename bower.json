@@ -2,10 +2,9 @@
   "name": "intuit-fe-summit",
   "version": "0.0.1",
   "dependencies": {
-    "jquery": "~2.1.2",
     "normalize.css": "~3.0.3"
   },
   "devDependencies": {
-    "jquery": "~2.1.2"
+    "normalize.css": "~3.0.3"
   }
 }

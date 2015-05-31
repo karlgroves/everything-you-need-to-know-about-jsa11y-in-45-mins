@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8"/>
     <title>Everything you need to know about JavaScript Accessibility in 40 minutes.</title>
-    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
@@ -356,33 +355,78 @@
     </ul>
 </footer>
 <section id="tehDialog">
+
     <div id="login">
         <h2>Log In</h2>
 
-        <form>
-            <label for="email"><span>Email Address</span>
-                <input type="email" id="email" name="email">
-            </label>
-            <label for="password"><span>Password</span>
-                <input type="password" id="password" name="password">
-                <a href="#retrieve">Forgot your password?</a>
-            </label>
-            <input type="submit" name="submit" value="Log In">
-        </form>
+        <div class="dialog_content">
+            <form>
+                <label for="email"><span>Email Address</span>
+                    <input type="email" id="email" name="email">
+                </label>
+                <label for="password"><span>Password</span>
+                    <input type="password" id="password" name="password">
+
+                </label>
+                <input type="submit" name="submit" value="Log In"> <a href="#retrieve">Forgot your password?</a>
+            </form>
+        </div>
     </div>
     <div id="retrieve">
         <h2>Retrieve Password</h2>
 
-        <form>
-            <label for="email"><span>Email Address</span>
-                <input type="email" id="email" name="email">
-            </label>
+        <div class="dialog_content">
+            <form>
+                <label for="email"><span>Email Address</span>
+                    <input type="email" id="email" name="email">
+                </label>
 
-            <input type="submit" name="submit" value="Retrieve Password">
-        </form>
+                <input type="submit" name="submit" value="Retrieve Password">
+            </form>
+        </div>
     </div>
 </section>
+<!--//
+<script src="../steps/step1.js"></script>
+//-->
+
+<script src="../steps/step2.js"></script>
+
+<!--//
+<script src="../steps/step3.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step4.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step5.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step6.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step7.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step8.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step9.js"></script>
+//-->
+
+<!--//
+<script src="../steps/step10.js"></script>
+//-->
+
+<!--//
 <script src="dialog.js"></script>
-<script src="stuff.js"></script>
+//-->
+
 </body>
 </html>
