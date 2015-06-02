@@ -15,12 +15,15 @@ header #sign-in {
     float: right;
     height: 30px;
     width: auto;
-    line-height: 20px;
+    line-height: 30px;
     margin-top: 10px;
     background-color: #369;
     color: #eee;
     border: 1px solid #039;
     border-radius: 5px;
+    text-decoration: none;
+    padding-left: 3px;
+    padding-right: 3px;
 }
 
 header #sign-in:focus, header #sign-in:hover {
@@ -183,22 +186,55 @@ footer ul li a {
     font-size: 10pt;
 }
 
-#tehDialog h2 {
+#tehDialog .dialog_header {
     margin: 0;
     border-bottom: solid 2px #333;
     background-color: #333;
     padding: 4px;
     color: White;
     font-weight: bold;
+    height: 25px;
+}
+
+.dialog_header h2 {
+    float: left;
+    margin-top: 0;
+    margin-left: .5em;
+}
+
+.dialog_header a {
+    float: right;
+    color: #333;
+    padding: 3px;
+    background-color: #fff;
+    text-decoration: none;
+    margin-right: .5em;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin-top: 4px;
+}
+
+.dialog_header a:focus, .dialog_header a:hover {
+    float: right;
+    color: #fff;
+    padding: 3px;
+    background-color: #333;
+    text-decoration: none;
+    margin-right: .5em;
+    border: 1px solid #fff;
+    border-radius: 3px;
+    width: 10px;
+    height: 10px;
+    line-height: 10px;
+    margin-top: 4px;
+    outline: none;
 }
 
 .dialog_content {
     padding: 1em;
-}
-
-.web_dialog_title a {
-    color: White;
-    text-decoration: none;
 }
 
 .align_right {
@@ -211,13 +247,15 @@ footer ul li a {
 
 #tehDialog form label {
     display: block;
-    margin-bottom: 1.5em;
+    margin-bottom: 1.7em;
 }
 
 #tehDialog form label input {
     width: 350px;
+    height: 2em;
 }
 
 #tehDialog form label span {
     display: block;
+    font-weight: bold;
 }

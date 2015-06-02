@@ -9,7 +9,7 @@
 <body>
 <header>
     <div id="tagline">Super-Awesome Co.</div>
-    <button id="sign-in">Sign In</button>
+    <a href="#" id="sign-in">Sign In</a>
 </header>
 <nav aria-label="Global Navigation">
     <ul>
@@ -355,10 +355,8 @@
     </ul>
 </footer>
 <section id="tehDialog">
-
     <div id="login">
-        <h2>Log In</h2>
-
+        <div class="dialog_header"><h2 id="dLabel">Log In</h2> <a href="#" id="close-button">X</a></div>
         <div class="dialog_content">
             <form>
                 <label for="email"><span>Email Address</span>
@@ -368,12 +366,12 @@
                     <input type="password" id="password" name="password">
 
                 </label>
-                <input type="submit" name="submit" value="Log In"> <a href="#retrieve">Forgot your password?</a>
+                <input type="submit" name="submit" value="Log In"> <a href="#">Forgot your password?</a>
             </form>
         </div>
     </div>
     <div id="retrieve">
-        <h2>Retrieve Password</h2>
+        <div class="dialog_header"><h2 id="dLabel">Retrieve Password</h2><a href="#" id="close-button">X</a></div>
 
         <div class="dialog_content">
             <form>
@@ -390,7 +388,9 @@
 <script src="../steps/step1.js"></script>
 //-->
 
+<!--//
 <script src="../steps/step2.js"></script>
+//-->
 
 <!--//
 <script src="../steps/step3.js"></script>
@@ -420,9 +420,9 @@
 <script src="../steps/step9.js"></script>
 //-->
 
-<!--//
+
 <script src="../steps/step10.js"></script>
-//-->
+
 
 <!--//
 <script src="dialog.js"></script>

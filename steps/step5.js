@@ -11,6 +11,9 @@ var dialog = {
         this.overlay.setAttribute('id', 'overlay');
         dParent.insertBefore(this.overlay, tehDialog);
         tehDialog.style.display = 'block';
+        tehDialog.setAttribute('tabindex', '-1');
+        tehDialog.style.outline = 'none';
+        tehDialog.focus();
     },
 
     close: function (d) {
@@ -21,3 +24,16 @@ var dialog = {
 
 };
 
+var dOpener = document.getElementById('sign-in');
+dOpener.addEventListener('click', function(){
+        dialog.open('tehDialog');
+    }, false
+);
+
+
+document.onkeydown = function (e) {
+    // ESCAPE key pressed
+    if (e.keyCode === 27) {
+        dialog.close('tehDialog');
+    }
+};

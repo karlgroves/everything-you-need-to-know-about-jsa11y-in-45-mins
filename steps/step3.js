@@ -21,3 +21,9 @@ var dialog = {
 
 };
 
+var dOpener = document.getElementById('sign-in');
+
+dOpener.addEventListener('click', function(){
+        dialog.open('tehDialog');
+    }, false
+);

@@ -37,5 +37,32 @@ Run `npm install && bower install`
 #### Step 2
 * Create the functionality to append the overlay, open the dialog, and close the dialog
 
+#### Step 3
+* Add ability to open the dialog from the Sign In Button
+
+#### Step 4
+* Shift focus to the new dialog
+
+#### Step 5
+* Allow dialog to close from escape key
+
+#### Step 6
+* add accessible keydown on Sign In button
+
+#### Step 7
+* add a Close button; make close button do the close business
+
+#### Step 8
+* Add role(s) and labels
+  * Close button
+  * Dialog	
+* Change focus to 1st focusable item (the close button)
+
+#### Step 9
+* Explicitly set next logical element for focus
+
+#### Step 10
+* Hide all the things
+
 
 
