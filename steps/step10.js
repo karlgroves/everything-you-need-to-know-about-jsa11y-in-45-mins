@@ -10,12 +10,16 @@ var dialog = {
 
         var couldFocus = document.querySelectorAll(this.focusable),
             cLength = couldFocus.length,
-            dChildren = document.querySelectorAll('#' + d + ' *');
+            dChildren = document.querySelectorAll('#' + d + ' *'),
+            dLength = dChildren.length;
+
+        for(var x = 0; x < dLength; x++){
+            dChildren[x].classList.add('in-dialog');
+        }
 
         for (var i = 0; i < cLength; ++i) {
 
-            //@TODO also make sure this item isn't in dChildren
-            if (couldFocus[i].style.display != 'none') {
+            if (couldFocus[i].style.display !== 'none' && (!couldFocus[i].classList.contains('in-dialog'))) {
                 couldFocus[i].setAttribute('tabindex', '-1');
                 couldFocus[i].setAttribute('aria-hidden', 'true');
                 couldFocus[i].classList.add('hidden-by-modal');
@@ -24,13 +28,13 @@ var dialog = {
     },
 
     unHideEm: function () {
-        var toUndo = document.querySelectorAll('.hidden-by-modal'),
-            tLength = toUndo.length;
+        var toUnHide = document.querySelectorAll('.hidden-by-modal'),
+            tLength = toUnHide.length;
 
         for (var i = 0; i < tLength; ++i) {
-            toUndo[i].setAttribute('tabindex', '0');
-            toUndo[i].setAttribute('aria-hidden', 'false');
-            toUndo[i].classList.remove('hidden-by-modal');
+            toUnHide[i].setAttribute('tabindex', '0');
+            toUnHide[i].setAttribute('aria-hidden', 'false');
+            toUnHide[i].classList.remove('hidden-by-modal');
         }
     },
 
