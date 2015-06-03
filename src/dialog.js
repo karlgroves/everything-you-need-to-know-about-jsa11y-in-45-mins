@@ -43,17 +43,13 @@ var dialog = {
 
         var dFocus;
 
-        // sanity check, make sure that if 'n' isn't set
-        // we set this to the closer
+        // sanity check, make sure that if 'focusTo' isn't set
+        // we set this to the first actionable item in the dialog
         if (typeof focusTo === 'undefined') {
-            //this.dCloser.focus();
 
-            console.log(this.closer);
-
-            dFocus = document.getElementById(this.closer);
+            dFocus = document.querySelector('#' + this.dElement + ' ' + this.focusable);
 
             console.log(dFocus);
-
 
             dFocus.focus();
 
