@@ -420,13 +420,24 @@
 <script src="../steps/step9.js"></script>
 //-->
 
-
-<script src="../steps/step10.js"></script>
-
-
 <!--//
-<script src="dialog.js"></script>
+<script src="../steps/step10.js"></script>
 //-->
+
+
+<script src="dialog.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+
+        dLogOpts = {
+            opener: 'sign-in',
+            closer: 'close-button',
+            dElement: 'tehDialog'
+        };
+
+        dialog.init(dLogOpts);
+    });
+</script>
 
 </body>
 </html>
