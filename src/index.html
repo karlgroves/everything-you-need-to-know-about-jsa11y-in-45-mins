@@ -436,6 +436,20 @@
         };
 
         dialog.init(dLogOpts);
+
+
+        // if the dialog is open allow the escape key to close it.
+        document.onkeydown = function (e) {
+            // ESCAPE key pressed
+            if (dialog.theDialog.style.display === 'block') {
+                if (e.keyCode === 27) {
+                    dialog.close();
+                }
+            }
+        };
+
+
+
     });
 </script>
 

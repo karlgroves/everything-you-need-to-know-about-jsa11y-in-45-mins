@@ -37,28 +37,12 @@ var dialog = {
 
     /**
      *
-     * @param focusTo
+     * @param focusTo (Optional) ID of element to shift focus to when dialog is opened. Defaults to first actionable item
      */
     open: function (focusTo) {
 
         var dFocus;
 
-        // sanity check, make sure that if 'focusTo' isn't set
-        // we set this to the first actionable item in the dialog
-        if (typeof focusTo === 'undefined') {
-
-            dFocus = document.querySelector('#' + this.dElement + ' ' + this.focusable);
-
-            console.log(dFocus);
-
-            dFocus.focus();
-
-            console.log(document.activeElement);
-        }
-        else {
-            dFocus = document.getElementById(focusTo);
-            dFocus.focus();
-        }
         this.overlay = document.createElement('div');
         this.overlay.setAttribute('id', 'overlay');
 
@@ -71,21 +55,33 @@ var dialog = {
         this.theDialog.setAttribute('role', 'dialog');
         this.theDialog.setAttribute('aria-labelledby', 'dLabel');
         this.theDialog.style.outline = 'none';
+
+
+        // sanity check, make sure that if 'focusTo' isn't set
+        // we set this to the first actionable item in the dialog
+        if (typeof focusTo === 'undefined') {
+            dFocus = document.querySelector('#' + this.dElement + ' ' + this.focusable);
+            dFocus.focus();
+        }
+        else {
+            dFocus = document.getElementById(focusTo);
+            dFocus.focus();
+        }
     },
 
     /**
      *
-     * @param n
+     * @param next (Optiona) ID of the next item that needs to get focus after dialog closes. Defaults to the control that opened the dialog
      */
-    close: function (n) {
+    close: function (next) {
 
-        // sanity check, make sure that if 'n' isn't set
+        // sanity check, make sure that if 'next' isn't set
         // we just send the user back to the control that invoked the dialog
-        if (typeof n === 'undefined') {
-            n = this.opener;
+        if (typeof next === 'undefined') {
+            next = this.opener;
         }
 
-        var nextLocation = document.getElementById(n);
+        var nextLocation = document.getElementById(next);
 
         this.unHideEm();
         this.overlay.remove();
@@ -94,6 +90,10 @@ var dialog = {
     },
 
 
+    /**
+     *
+     * @param opts object containing options to be used by other dialog functions
+     */
     init: function (opts) {
 
         this.focusable = 'a[href], area, button, select, textarea, *[tabindex="0"], input:not([type="hidden"])';
@@ -148,17 +148,6 @@ var dialog = {
                 }
             }, false
         );
-
-        // if the dialog is open allow the escape key to close it.
-        document.onkeydown = function (e) {
-            // ESCAPE key pressed
-            //if (this.theDialog.style.display === 'block') {
-            if (e.keyCode === 27) {
-                dialog.close();
-            }
-            //}
-        };
-
 
         this.dCloser.setAttribute('role', 'button');
         this.dCloser.setAttribute('aria-label', 'Close Dialog');
