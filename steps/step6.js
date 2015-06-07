@@ -1,6 +1,6 @@
 'use strict';
 
-var dialog = {
+var axsdialog = {
 
     overlay: document.createElement('div'),
 
@@ -26,7 +26,7 @@ var dialog = {
 
 var dOpener = document.getElementById('sign-in');
 dOpener.addEventListener('click', function(){
-        dialog.open('tehDialog');
+        axsdialog.open('tehDialog');
     }, false
 );
 
@@ -36,7 +36,7 @@ dOpener.addEventListener('keydown', function(event){
         if (event.type === 'keydown') {
             if (code === 32 || code === 13) {
                 event.preventDefault();
-                dialog.open('tehDialog');
+                axsdialog.open('tehDialog');
             }
         }
     }, false
@@ -46,7 +46,7 @@ dOpener.addEventListener('keydown', function(event){
 document.onkeydown = function (e) {
     // ESCAPE key pressed
     if (e.keyCode === 27) {
-        dialog.close('tehDialog');
+        axsdialog.close('tehDialog');
     }
 };
 

@@ -1,6 +1,6 @@
 'use strict';
 
-var dialog = {
+var axsdialog = {
 
     overlay: document.createElement('div'),
 
@@ -14,27 +14,27 @@ var dialog = {
             dLength = dChildren.length;
 
         for(var x = 0; x < dLength; x++){
-            dChildren[x].classList.add('in-dialog');
+            dChildren[x].classList.add('in_axs_dialog');
         }
 
         for (var i = 0; i < cLength; ++i) {
 
-            if (couldFocus[i].style.display !== 'none' && (!couldFocus[i].classList.contains('in-dialog'))) {
+            if (couldFocus[i].style.display !== 'none' && (!couldFocus[i].classList.contains('in_axs_dialog'))) {
                 couldFocus[i].setAttribute('tabindex', '-1');
                 couldFocus[i].setAttribute('aria-hidden', 'true');
-                couldFocus[i].classList.add('hidden-by-modal');
+                couldFocus[i].classList.add('axs_hidden_by_modal');
             }
         }
     },
 
     unHideEm: function () {
-        var toUnHide = document.querySelectorAll('.hidden-by-modal'),
+        var toUnHide = document.querySelectorAll('.axs_hidden_by_modal'),
             tLength = toUnHide.length;
 
         for (var i = 0; i < tLength; ++i) {
             toUnHide[i].setAttribute('tabindex', '0');
             toUnHide[i].setAttribute('aria-hidden', 'false');
-            toUnHide[i].classList.remove('hidden-by-modal');
+            toUnHide[i].classList.remove('axs_hidden_by_modal');
         }
     },
 
@@ -75,7 +75,7 @@ var dOpener = document.getElementById('sign-in');
 dOpener.setAttribute('role', 'button');
 
 dOpener.addEventListener('click', function () {
-        dialog.open('tehDialog');
+        axsdialog.open('tehDialog');
     }, false
 );
 
@@ -85,7 +85,7 @@ dOpener.addEventListener('keydown', function (event) {
         if (event.type === 'keydown') {
             if (code === 32 || code === 13) {
                 event.preventDefault();
-                dialog.open('tehDialog');
+                axsdialog.open('tehDialog');
             }
         }
     }, false
@@ -95,7 +95,7 @@ dOpener.addEventListener('keydown', function (event) {
 document.onkeydown = function (e) {
     // ESCAPE key pressed
     if (e.keyCode === 27) {
-        dialog.close('tehDialog', 'sign-in');
+        axsdialog.close('tehDialog', 'sign-in');
     }
 };
 
@@ -106,7 +106,7 @@ closer.setAttribute('role', 'button');
 closer.setAttribute('aria-label', 'Close Dialog');
 
 closer.addEventListener('click', function () {
-        dialog.close('tehDialog', 'sign-in');
+        axsdialog.close('tehDialog', 'sign-in');
     }, false
 );
 
@@ -116,7 +116,7 @@ closer.addEventListener('keydown', function (event) {
         if (event.type === 'keydown') {
             if (code === 32 || code === 13) {
                 event.preventDefault();
-                dialog.close('tehDialog', 'sign-in');
+                axsdialog.close('tehDialog', 'sign-in');
             }
         }
     }, false

@@ -1,6 +1,6 @@
 'use strict';
 
-var dialog = {
+var axsdialog = {
 
     overlay: document.createElement('div'),
 
@@ -8,7 +8,7 @@ var dialog = {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode;
 
-        this.overlay.setAttribute('id', 'overlay');
+        this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
         tehDialog.style.display = 'block';
     },

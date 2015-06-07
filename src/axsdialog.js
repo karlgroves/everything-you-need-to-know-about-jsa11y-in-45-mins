@@ -1,6 +1,6 @@
 'use strict';
 
-var dialog = {
+var axsdialog = {
 
     /**
      *  Function to "hide" everything outside the dialog from Screen Readers
@@ -8,15 +8,15 @@ var dialog = {
     hideEm: function () {
 
         for (var x = 0; x < this.dLength; x++) {
-            this.dChildren[x].classList.add('in-dialog');
+            this.dialogChildren[x].classList.add('in_axs_dialog');
         }
 
         for (var i = 0; i < this.cLength; ++i) {
 
-            if (this.couldFocus[i].style.display !== 'none' && (!this.couldFocus[i].classList.contains('in-dialog'))) {
+            if (this.couldFocus[i].style.display !== 'none' && (!this.couldFocus[i].classList.contains('in_axs_dialog'))) {
                 this.couldFocus[i].setAttribute('tabindex', '-1');
                 this.couldFocus[i].setAttribute('aria-hidden', 'true');
-                this.couldFocus[i].classList.add('hidden-by-modal');
+                this.couldFocus[i].classList.add('axs_hidden_by_modal');
             }
         }
     },
@@ -25,13 +25,13 @@ var dialog = {
      * Function to "unhide" the things hidden by the function above.
      */
     unHideEm: function () {
-        var toUnHide = document.querySelectorAll('.hidden-by-modal'),
+        var toUnHide = document.querySelectorAll('.axs_hidden_by_modal'),
             tLength = toUnHide.length;
 
         for (var i = 0; i < tLength; ++i) {
             toUnHide[i].setAttribute('tabindex', '0');
             toUnHide[i].setAttribute('aria-hidden', 'false');
-            toUnHide[i].classList.remove('hidden-by-modal');
+            toUnHide[i].classList.remove('axs_hidden_by_modal');
         }
     },
 
@@ -41,31 +41,26 @@ var dialog = {
      */
     open: function (focusTo) {
 
-        var dFocus;
-
         this.overlay = document.createElement('div');
-        this.overlay.setAttribute('id', 'overlay');
+        this.overlay.setAttribute('class', 'axs_overlay');
 
-        this.dParent.insertBefore(this.overlay, this.theDialog);
+        this.dialogParent.insertBefore(this.overlay, this.theDialog);
 
         this.hideEm();
 
-        this.theDialog.style.display = 'block';
+        this.theDialog.classList.remove('axs_hidden');
+        this.theDialog.classList.add('axs_dialog_wrapper');
         this.theDialog.setAttribute('tabindex', '-1');
-        this.theDialog.setAttribute('role', 'dialog');
+        this.theDialog.setAttribute('role', this.role);
         this.theDialog.setAttribute('aria-labelledby', 'dLabel');
-        this.theDialog.style.outline = 'none';
-
 
         // sanity check, make sure that if 'focusTo' isn't set
         // we set this to the first actionable item in the dialog
         if (typeof focusTo === 'undefined') {
-            dFocus = document.querySelector('#' + this.dElement + ' ' + this.focusable);
-            dFocus.focus();
+            document.querySelector('#' + this.dialogElement + ' ' + this.focusable).focus();
         }
         else {
-            dFocus = document.getElementById(focusTo);
-            dFocus.focus();
+            document.getElementById(focusTo).focus();
         }
     },
 
@@ -81,12 +76,10 @@ var dialog = {
             next = this.opener;
         }
 
-        var nextLocation = document.getElementById(next);
-
         this.unHideEm();
         this.overlay.remove();
-        this.theDialog.style.display = 'none';
-        nextLocation.focus();
+        this.theDialog.classList.add('axs_hidden');
+        document.getElementById(next).focus();
     },
 
 
@@ -98,6 +91,8 @@ var dialog = {
 
         this.focusable = 'a[href], area, button, select, textarea, *[tabindex="0"], input:not([type="hidden"])';
 
+        this.role = opts.role;
+
         // String: ID of the element that opened the dialog
         this.opener = opts.opener;
 
@@ -105,19 +100,21 @@ var dialog = {
         this.closer = opts.closer;
 
         // String: ID of the dialog container
-        this.dElement = opts.dElement;
+        this.dialogElement = opts.dialogElement;
 
         // explicit reference to the opener element
-        this.dOpener = document.getElementById(this.opener);
+        this.dialogOpener = document.getElementById(this.opener);
 
         // explicit reference to the closing element
-        this.dCloser = document.getElementById(this.closer);
+        this.dialogCloser = document.getElementById(this.closer);
 
         // explicit reference to the dialog
-        this.theDialog = document.getElementById(this.dElement);
+        this.theDialog = document.getElementById(this.dialogElement);
+
+        this.theDialog.classList.add('axs_hidden');
 
         // explicit reference to the dialog's parent node
-        this.dParent = this.theDialog.parentNode;
+        this.dialogParent = this.theDialog.parentNode;
 
         // nodelist of the items on the page that can get focus
         this.couldFocus = document.querySelectorAll(this.focusable);
@@ -125,49 +122,54 @@ var dialog = {
         this.cLength = this.couldFocus.length;
 
         // nodelist of the dialog wrapper's child elements
-        this.dChildren = document.querySelectorAll('#' + this.dElement + ' *');
+        this.dialogChildren = document.querySelectorAll('#' + this.dialogElement + ' *');
 
-        this.dLength = this.dChildren.length;
+        this.dLength = this.dialogChildren.length;
 
-        // Do some stuff to the control that opens the dialog.
-        // @TODO only do this if the item isn't a button
-        this.dOpener.setAttribute('role', 'button');
-
-        this.dOpener.addEventListener('click', function () {
-                dialog.open();
+        this.dialogOpener.addEventListener('click', function () {
+                axsdialog.open();
             }, false
         );
 
-        this.dOpener.addEventListener('keydown', function (event) {
+        this.dialogOpener.addEventListener('keydown', function (event) {
                 var code = event.charCode || event.keyCode;
                 if (event.type === 'keydown') {
                     if (code === 32 || code === 13) {
                         event.preventDefault();
-                        dialog.open();
+                        axsdialog.open();
                     }
                 }
             }, false
         );
 
-        this.dCloser.setAttribute('role', 'button');
-        this.dCloser.setAttribute('aria-label', 'Close Dialog');
+        this.dialogCloser.setAttribute('role', 'button');
+        this.dialogCloser.setAttribute('aria-label', 'Close Dialog');
 
-        this.dCloser.addEventListener('click', function () {
-                dialog.close();
+        this.dialogCloser.addEventListener('click', function () {
+                axsdialog.close();
             }, false
         );
 
-        this.dCloser.addEventListener('keydown', function (event) {
+        this.dialogCloser.addEventListener('keydown', function (event) {
                 var code = event.charCode || event.keyCode;
                 if (event.type === 'keydown') {
                     if (code === 32 || code === 13) {
                         event.preventDefault();
-                        dialog.close();
+                        axsdialog.close();
                     }
                 }
             }, false
         );
 
-    },
+
+        // if the dialog is open allow the escape key to close it.
+        document.onkeydown = function (event) {
+            if (!axsdialog.theDialog.classList.contains('axs_hidden')) {
+                if (event.keyCode === 27) {
+                    axsdialog.close();
+                }
+            }
+        };
+    }
 
 };

@@ -5,11 +5,12 @@
     <title>Everything you need to know about JavaScript Accessibility in 40 minutes.</title>
     <link rel="stylesheet" type="text/css" href="../bower_components/normalize.css/normalize.css">
     <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="axsdialog.css">
 </head>
 <body>
 <header>
     <div id="tagline">Super-Awesome Co.</div>
-    <a href="#" id="sign-in">Sign In</a>
+    <a href="#" id="sign-in" role="button">Sign In</a>
 </header>
 <nav aria-label="Global Navigation">
     <ul>
@@ -356,8 +357,8 @@
 </footer>
 <section id="tehDialog">
     <div id="login">
-        <div class="dialog_header"><h2 id="dLabel">Log In</h2> <a href="#" id="close-button">X</a></div>
-        <div class="dialog_content">
+        <div class="axs_dialog_header"><h2 id="dLabel">Log In</h2> <button id="close-button">X</button></div>
+        <div class="axs_dialog_content">
             <form>
                 <label for="email"><span>Email Address</span>
                     <input type="email" id="email" name="email">
@@ -366,20 +367,7 @@
                     <input type="password" id="password" name="password">
 
                 </label>
-                <input type="submit" name="submit" value="Log In"> <a href="#">Forgot your password?</a>
-            </form>
-        </div>
-    </div>
-    <div id="retrieve">
-        <div class="dialog_header"><h2 id="dLabel">Retrieve Password</h2><a href="#" id="close-button">X</a></div>
-
-        <div class="dialog_content">
-            <form>
-                <label for="email"><span>Email Address</span>
-                    <input type="email" id="email" name="email">
-                </label>
-
-                <input type="submit" name="submit" value="Retrieve Password">
+                <input type="submit" name="submit" value="Log In">
             </form>
         </div>
     </div>
@@ -425,30 +413,18 @@
 //-->
 
 
-<script src="dialog.js"></script>
+<script src="axsdialog.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
 
-        dLogOpts = {
+        dialogOpts = {
+            role: 'dialog',
             opener: 'sign-in',
             closer: 'close-button',
-            dElement: 'tehDialog'
+            dialogElement: 'tehDialog'
         };
 
-        dialog.init(dLogOpts);
-
-
-        // if the dialog is open allow the escape key to close it.
-        document.onkeydown = function (e) {
-            // ESCAPE key pressed
-            if (dialog.theDialog.style.display === 'block') {
-                if (e.keyCode === 27) {
-                    dialog.close();
-                }
-            }
-        };
-
-
+        axsdialog.init(dialogOpts);
 
     });
 </script>
