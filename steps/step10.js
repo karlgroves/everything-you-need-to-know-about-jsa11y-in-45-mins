@@ -1,5 +1,7 @@
 'use strict';
 
+// STEP 10: Hide all the things
+//          Adds the hideEm and unHideEm methods for hiding the actionable stuff outside the dialog.
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -63,7 +65,10 @@ var axsdialog = {
 
         this.unHideEm();
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
+
         nextLocation.focus();
 
     }

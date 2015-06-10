@@ -1,5 +1,6 @@
 'use strict';
 
+// STEP 4: Shift focus to the new dialog
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -10,7 +11,11 @@ var axsdialog = {
 
         this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
+        // Step 4 adds this bit for shifting focus to the new dialog when it opens
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.style.outline = 'none';
         tehDialog.focus();
@@ -19,7 +24,9 @@ var axsdialog = {
     close: function (d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
     }
 
 };

@@ -1,5 +1,7 @@
 'use strict';
 
+
+// STEP 5: Allow dialog to close from escape key
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -10,7 +12,10 @@ var axsdialog = {
 
         this.overlay.setAttribute('id', 'overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.style.outline = 'none';
         tehDialog.focus();
@@ -19,7 +24,9 @@ var axsdialog = {
     close: function (d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
     }
 
 };
@@ -31,6 +38,7 @@ dOpener.addEventListener('click', function(){
 );
 
 
+// Step 5 adds functionality to allow the dialog to close from the escape key
 document.onkeydown = function (e) {
     // ESCAPE key pressed
     if (e.keyCode === 27) {

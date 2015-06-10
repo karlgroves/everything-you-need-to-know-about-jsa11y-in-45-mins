@@ -1,5 +1,8 @@
 'use strict';
 
+// STEP 7: add a Close button; make close button do the close business
+//         For this step (and all that come after) you need to add this to
+//         the dialog header:  <button id="close-button">X</button>
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -10,7 +13,10 @@ var axsdialog = {
 
         this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.style.outline = 'none';
         tehDialog.focus();
@@ -19,7 +25,9 @@ var axsdialog = {
     close: function (d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
     }
 
 };
@@ -51,6 +59,8 @@ document.onkeydown = function (e) {
 };
 
 
+
+// Step 7: add a Close button; make close button do the close business
 var closer = document.getElementById('close-button');
 closer.addEventListener('click', function () {
         axsdialog.close('tehDialog');

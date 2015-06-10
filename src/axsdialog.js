@@ -66,7 +66,7 @@ var axsdialog = {
 
     /**
      *
-     * @param next (Optiona) ID of the next item that needs to get focus after dialog closes. Defaults to the control that opened the dialog
+     * @param next (Optional) ID of the next item that needs to get focus after dialog closes. Defaults to the control that opened the dialog
      */
     close: function (next) {
 

@@ -37,7 +37,7 @@ module.exports = function (grunt) {
             },
             src: {
                 files: '<%= jshint.src.src %>',
-                tasks: ['jshint:src', 'qunit']
+                tasks: ['jshint:src', 'jshint']
             }
         }
     });

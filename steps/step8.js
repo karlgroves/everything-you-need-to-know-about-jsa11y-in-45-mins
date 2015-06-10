@@ -1,5 +1,10 @@
 'use strict';
 
+
+// STEP 8: Add role(s) and labels
+// * Close button
+// * Dialog
+// * Change focus to 1st focusable item (the close button)
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -7,28 +12,39 @@ var axsdialog = {
     open: function (d) {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode,
+
+            // new variable for the close button
             cButton = document.getElementById('close-button');
 
         this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
+
         tehDialog.setAttribute('tabindex', '-1');
+        tehDialog.style.outline = 'none';
+
+        // Step 8 adds role and label to the dialog and gives focus to the close button
         tehDialog.setAttribute('role', 'dialog');
         tehDialog.setAttribute('aria-labelledby', 'dLabel');
-        tehDialog.style.outline = 'none';
         cButton.focus();
     },
 
     close: function (d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
     }
 
 };
 
 var dOpener = document.getElementById('sign-in');
 
+// Step 8 adds role to the opener button
 dOpener.setAttribute('role', 'button');
 
 dOpener.addEventListener('click', function () {
@@ -59,6 +75,7 @@ document.onkeydown = function (e) {
 
 var closer = document.getElementById('close-button');
 
+// Step 8 adds role to the closer button and adds a proper label
 closer.setAttribute('role', 'button');
 closer.setAttribute('aria-label', 'Close Dialog');
 

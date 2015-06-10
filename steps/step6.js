@@ -1,5 +1,7 @@
 'use strict';
 
+
+// STEP 6 add accessible keydown on Sign In button
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -10,7 +12,10 @@ var axsdialog = {
 
         this.overlay.setAttribute('id', 'overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.style.outline = 'none';
         tehDialog.focus();
@@ -19,7 +24,9 @@ var axsdialog = {
     close: function (d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
     }
 
 };
@@ -30,6 +37,7 @@ dOpener.addEventListener('click', function(){
     }, false
 );
 
+// Step 6 adds the accessible keydown on Sign In button
 dOpener.addEventListener('keydown', function(event){
 
         var code = event.charCode || event.keyCode;

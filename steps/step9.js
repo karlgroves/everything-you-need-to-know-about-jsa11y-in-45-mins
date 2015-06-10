@@ -1,5 +1,6 @@
 'use strict';
 
+// STEP 9: Explicitly set next logical element for focus
 var axsdialog = {
 
     overlay: document.createElement('div'),
@@ -11,7 +12,11 @@ var axsdialog = {
 
         this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
-        tehDialog.style.display = 'block';
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
+
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.setAttribute('role', 'dialog');
         tehDialog.setAttribute('aria-labelledby', 'dLabel');
@@ -19,11 +24,15 @@ var axsdialog = {
         cButton.focus();
     },
 
+    // Step 9: Allows you to explicitly set the next logical element for focus via the 'n' argument
     close: function (d, n) {
         var tehDialog = document.getElementById(d),
             nextLocation = document.getElementById(n);
         this.overlay.remove();
-        tehDialog.style.display = 'none';
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
+
         nextLocation.focus();
 
     }
