@@ -1,5 +1,7 @@
 #READ ME
 
+> *Watch the talk*: https://youtu.be/baR9OvL4g7w (F2E Summit 2015)
+
 ## Goal
 Use the creation of a dialog to demonstrate a number of core accessibility principles like
 * keyboard accessibility
@@ -55,7 +57,7 @@ Run `npm install && bower install`
 #### Step 8
 * Add role(s) and labels
   * Close button
-  * Dialog	
+  * Dialog
 * Change focus to 1st focusable item (the close button)
 
 #### Step 9
@@ -63,6 +65,3 @@ Run `npm install && bower install`
 
 #### Step 10
 * Hide all the things
-
-
-
