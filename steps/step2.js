@@ -5,7 +5,7 @@ var axsdialog = {
 
     overlay: document.createElement('div'),
 
-    open: function (d) {
+    open: function(d) {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode;
 
@@ -16,7 +16,7 @@ var axsdialog = {
         tehDialog.classList.add('axs_dialog_wrapper');
     },
 
-    close: function (d) {
+    close: function(d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
 
@@ -25,4 +25,3 @@ var axsdialog = {
     }
 
 };
-

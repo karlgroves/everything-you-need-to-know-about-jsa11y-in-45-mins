@@ -6,16 +6,16 @@ var axsdialog = {
 
     overlay: document.createElement('div'),
 
-    focusable: 'a[href], area, button, select, textarea, *[tabindex="0"], input:not([type="hidden"])',
+    focusable: 'a[href], area[href], button, select, textarea, *[tabindex="0"], input:not([type="hidden"])',
 
-    hideEm: function (d) {
+    hideEm: function(d) {
 
         var couldFocus = document.querySelectorAll(this.focusable),
             cLength = couldFocus.length,
             dChildren = document.querySelectorAll('#' + d + ' *'),
             dLength = dChildren.length;
 
-        for(var x = 0; x < dLength; x++){
+        for (var x = 0; x < dLength; x++) {
             dChildren[x].classList.add('in_axs_dialog');
         }
 
@@ -29,7 +29,7 @@ var axsdialog = {
         }
     },
 
-    unHideEm: function () {
+    unHideEm: function() {
         var toUnHide = document.querySelectorAll('.axs_hidden_by_modal'),
             tLength = toUnHide.length;
 
@@ -40,7 +40,7 @@ var axsdialog = {
         }
     },
 
-    open: function (d) {
+    open: function(d) {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode,
             cButton = document.getElementById('close-button');
@@ -59,7 +59,7 @@ var axsdialog = {
         cButton.focus();
     },
 
-    close: function (d, n) {
+    close: function(d, n) {
         var tehDialog = document.getElementById(d),
             nextLocation = document.getElementById(n);
 
@@ -76,28 +76,24 @@ var axsdialog = {
 };
 
 var dOpener = document.getElementById('sign-in');
-
+dOpener.setAttribute('tabindex', '0');
 dOpener.setAttribute('role', 'button');
+dOpener.addEventListener('click', function() {
+    axsdialog.open('tehDialog');
+}, false);
 
-dOpener.addEventListener('click', function () {
-        axsdialog.open('tehDialog');
-    }, false
-);
+dOpener.addEventListener('keydown', function(event) {
 
-dOpener.addEventListener('keydown', function (event) {
-
-        var code = event.charCode || event.keyCode;
-        if (event.type === 'keydown') {
-            if (code === 32 || code === 13) {
-                event.preventDefault();
-                axsdialog.open('tehDialog');
-            }
+    var code = event.charCode || event.keyCode;
+    if (event.type === 'keydown') {
+        if (code === 32 || code === 13) {
+            event.preventDefault();
+            axsdialog.open('tehDialog');
         }
-    }, false
-);
+    }
+}, false);
 
-
-document.onkeydown = function (e) {
+document.onkeydown = function(e) {
     // ESCAPE key pressed
     if (e.keyCode === 27) {
         axsdialog.close('tehDialog', 'sign-in');
@@ -105,25 +101,29 @@ document.onkeydown = function (e) {
 };
 
 
+var closeButton = document.createElement('button');
+closeButton.setAttribute('id', 'close-button');
+closeButton.textContent = 'X';
+
+var tehDialogHeader = document.getElementById('tehDialogHeader');
+tehDialogHeader.appendChild(closeButton);
+
 var closer = document.getElementById('close-button');
 
 closer.setAttribute('role', 'button');
 closer.setAttribute('aria-label', 'Close Dialog');
 
-closer.addEventListener('click', function () {
-        axsdialog.close('tehDialog', 'sign-in');
-    }, false
-);
+closer.addEventListener('click', function() {
+    axsdialog.close('tehDialog', 'sign-in');
+}, false);
 
-closer.addEventListener('keydown', function (event) {
+closer.addEventListener('keydown', function(event) {
 
-        var code = event.charCode || event.keyCode;
-        if (event.type === 'keydown') {
-            if (code === 32 || code === 13) {
-                event.preventDefault();
-                axsdialog.close('tehDialog', 'sign-in');
-            }
+    var code = event.charCode || event.keyCode;
+    if (event.type === 'keydown') {
+        if (code === 32 || code === 13) {
+            event.preventDefault();
+            axsdialog.close('tehDialog', 'sign-in');
         }
-    }, false
-);
-
+    }
+}, false);

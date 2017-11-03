@@ -89,7 +89,7 @@ var axsdialog = {
      */
     init: function (opts) {
 
-        this.focusable = 'a[href], area, button, select, textarea, *[tabindex="0"], input:not([type="hidden"])';
+        this.focusable = 'a[href], area[href], button, select, textarea, *[tabindex="0"], input:not([type="hidden"])';
 
         this.role = opts.role;
 

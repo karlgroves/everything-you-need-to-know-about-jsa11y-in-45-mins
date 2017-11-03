@@ -5,7 +5,7 @@ var axsdialog = {
 
     overlay: document.createElement('div'),
 
-    open: function (d) {
+    open: function(d) {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode;
 
@@ -21,7 +21,7 @@ var axsdialog = {
         tehDialog.focus();
     },
 
-    close: function (d) {
+    close: function(d) {
         var tehDialog = document.getElementById(d);
         this.overlay.remove();
 
@@ -33,7 +33,6 @@ var axsdialog = {
 
 var dOpener = document.getElementById('sign-in');
 
-dOpener.addEventListener('click', function(){
-        axsdialog.open('tehDialog');
-    }, false
-);
+dOpener.addEventListener('click', function() {
+    axsdialog.open('tehDialog');
+}, false);

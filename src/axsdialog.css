@@ -19,7 +19,7 @@
     display: block;
     position: fixed;
     width: 380px;
-    height: 250px;
+    height: 275px;
     top: 50%;
     left: 50%;
     margin-left: -190px;
@@ -103,6 +103,6 @@
     font-weight: bold;
 }
 
-.axs_hidden {
+.axs_hidden{
     display: none;
 }

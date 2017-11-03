@@ -88,7 +88,7 @@ nav li li {
 
 @media screen and (min-width: 650px) {
     nav li {
-        width: 130px;
+        width: 160px;
         border-bottom: none;
         height: 50px;
         line-height: 50px;
@@ -149,4 +149,8 @@ footer ul, footer ul li {
 footer ul li a {
     color: #eee;
     margin-right: .5em;
+}
+
+#login form{
+    padding-top: 1em;
 }
