@@ -10,6 +10,7 @@ var axsdialog = {
             dParent = tehDialog.parentNode;
 
         this.overlay.classList.add('axs_overlay');
+
         dParent.insertBefore(this.overlay, tehDialog);
 
         tehDialog.classList.remove('axs_hidden');

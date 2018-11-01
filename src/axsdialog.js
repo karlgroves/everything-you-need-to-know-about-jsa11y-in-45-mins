@@ -2,85 +2,44 @@
 
 var axsdialog = {
 
-    /**
-     *  Function to "hide" everything outside the dialog from Screen Readers
-     */
-    hideEm: function () {
+    overlay: document.createElement('div'),
 
-        for (var x = 0; x < this.dLength; x++) {
-            this.dialogChildren[x].classList.add('in_axs_dialog');
-        }
+    open: function(d, w) {
+        var tehDialog = document.getElementById(d),
+            dParent = tehDialog.parentNode,
+            cButton = document.getElementById('close-button');
 
-        for (var i = 0; i < this.cLength; ++i) {
+        var tehWrapper = document.getElementById(w);
+        tehWrapper.setAttribute('aria-hidden', 'true');
 
-            if (this.couldFocus[i].style.display !== 'none' && (!this.couldFocus[i].classList.contains('in_axs_dialog'))) {
-                this.couldFocus[i].setAttribute('tabindex', '-1');
-                this.couldFocus[i].setAttribute('aria-hidden', 'true');
-                this.couldFocus[i].classList.add('axs_hidden_by_modal');
-            }
-        }
+        this.overlay.classList.add('axs_overlay');
+        dParent.insertBefore(this.overlay, tehDialog);
+
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
+
+        tehDialog.setAttribute('tabindex', '-1');
+        tehDialog.setAttribute('role', 'dialog');
+        tehDialog.setAttribute('aria-labelledby', 'dLabel');
+        tehDialog.style.outline = 'none';
+        cButton.focus();
     },
 
-    /**
-     * Function to "unhide" the things hidden by the function above.
-     */
-    unHideEm: function () {
-        var toUnHide = document.querySelectorAll('.axs_hidden_by_modal'),
-            tLength = toUnHide.length;
+    close: function(d, n, w) {
 
-        for (var i = 0; i < tLength; ++i) {
-            toUnHide[i].setAttribute('tabindex', '0');
-            toUnHide[i].setAttribute('aria-hidden', 'false');
-            toUnHide[i].classList.remove('axs_hidden_by_modal');
-        }
-    },
-
-    /**
-     *
-     * @param focusTo (Optional) ID of element to shift focus to when dialog is opened. Defaults to first actionable item
-     */
-    open: function (focusTo) {
-
-        this.overlay = document.createElement('div');
-        this.overlay.setAttribute('class', 'axs_overlay');
-
-        this.dialogParent.insertBefore(this.overlay, this.theDialog);
-
-        this.hideEm();
-
-        this.theDialog.classList.remove('axs_hidden');
-        this.theDialog.classList.add('axs_dialog_wrapper');
-        this.theDialog.setAttribute('tabindex', '-1');
-        this.theDialog.setAttribute('role', this.role);
-        this.theDialog.setAttribute('aria-labelledby', 'dLabel');
-
-        // sanity check, make sure that if 'focusTo' isn't set
-        // we set this to the first actionable item in the dialog
-        if (typeof focusTo === 'undefined') {
-            document.querySelector('#' + this.dialogElement + ' ' + this.focusable).focus();
-        }
-        else {
-            document.getElementById(focusTo).focus();
-        }
-    },
-
-    /**
-     *
-     * @param next (Optional) ID of the next item that needs to get focus after dialog closes. Defaults to the control that opened the dialog
-     */
-    close: function (next) {
-
-        // sanity check, make sure that if 'next' isn't set
-        // we just send the user back to the control that invoked the dialog
-        if (typeof next === 'undefined') {
-            next = this.opener;
-        }
-
-        this.unHideEm();
+        var tehDialog = document.getElementById(d),
+            nextLocation = document.getElementById(n);
         this.overlay.remove();
-        this.theDialog.classList.add('axs_hidden');
-        document.getElementById(next).focus();
-    },
+
+        var tehWrapper = document.getElementById(w);
+        tehWrapper.setAttribute('aria-hidden', 'false');
+
+        tehDialog.classList.remove('axs_dialog_wrapper');
+        tehDialog.classList.add('axs_hidden');
+
+        nextLocation.focus();
+
+    }
 
 
     /**

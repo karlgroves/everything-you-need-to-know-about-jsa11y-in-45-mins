@@ -1,70 +1,41 @@
 'use strict';
 
 // STEP 10: Hide all the things
-//          Adds the hideEm and unHideEm methods for hiding the actionable stuff outside the dialog.
+'use strict';
+
 var axsdialog = {
 
     overlay: document.createElement('div'),
 
-    focusable: 'a[href], area[href], button, select, textarea, *[tabindex="0"], input:not([type="hidden"])',
-
-    hideEm: function(d) {
-
-        var couldFocus = document.querySelectorAll(this.focusable),
-            cLength = couldFocus.length,
-            dChildren = document.querySelectorAll('#' + d + ' *'),
-            dLength = dChildren.length;
-
-        for (var x = 0; x < dLength; x++) {
-            dChildren[x].classList.add('in_axs_dialog');
-        }
-
-        for (var i = 0; i < cLength; ++i) {
-
-            if (couldFocus[i].style.display !== 'none' && (!couldFocus[i].classList.contains('in_axs_dialog'))) {
-                couldFocus[i].setAttribute('tabindex', '-1');
-                couldFocus[i].setAttribute('aria-hidden', 'true');
-                couldFocus[i].classList.add('axs_hidden_by_modal');
-            }
-        }
-    },
-
-    unHideEm: function() {
-        var toUnHide = document.querySelectorAll('.axs_hidden_by_modal'),
-            tLength = toUnHide.length;
-
-        for (var i = 0; i < tLength; ++i) {
-            toUnHide[i].setAttribute('tabindex', '0');
-            toUnHide[i].setAttribute('aria-hidden', 'false');
-            toUnHide[i].classList.remove('axs_hidden_by_modal');
-        }
-    },
-
-    open: function(d) {
+    open: function(d, w) {
         var tehDialog = document.getElementById(d),
             dParent = tehDialog.parentNode,
             cButton = document.getElementById('close-button');
 
-        this.overlay.setAttribute('id', 'overlay');
+        var tehWrapper = document.getElementById(w);
+            tehWrapper.setAttribute('aria-hidden', 'true');
+
+        this.overlay.classList.add('axs_overlay');
         dParent.insertBefore(this.overlay, tehDialog);
 
-        this.hideEm(d);
+        tehDialog.classList.remove('axs_hidden');
+        tehDialog.classList.add('axs_dialog_wrapper');
 
-        tehDialog.style.display = 'block';
         tehDialog.setAttribute('tabindex', '-1');
         tehDialog.setAttribute('role', 'dialog');
         tehDialog.setAttribute('aria-labelledby', 'dLabel');
         tehDialog.style.outline = 'none';
-
         cButton.focus();
     },
 
-    close: function(d, n) {
+    close: function(d, n, w) {
+
         var tehDialog = document.getElementById(d),
             nextLocation = document.getElementById(n);
-
-        this.unHideEm();
         this.overlay.remove();
+
+        var tehWrapper = document.getElementById(w);
+        tehWrapper.setAttribute('aria-hidden', 'false');
 
         tehDialog.classList.remove('axs_dialog_wrapper');
         tehDialog.classList.add('axs_hidden');
@@ -78,8 +49,9 @@ var axsdialog = {
 var dOpener = document.getElementById('sign-in');
 dOpener.setAttribute('tabindex', '0');
 dOpener.setAttribute('role', 'button');
+
 dOpener.addEventListener('click', function() {
-    axsdialog.open('tehDialog');
+    axsdialog.open('tehDialog', 'wrap');
 }, false);
 
 dOpener.addEventListener('keydown', function(event) {
@@ -96,9 +68,10 @@ dOpener.addEventListener('keydown', function(event) {
 document.onkeydown = function(e) {
     // ESCAPE key pressed
     if (e.keyCode === 27) {
-        axsdialog.close('tehDialog', 'sign-in');
+        axsdialog.close('tehDialog', 'sign-in', 'wrap');
     }
 };
+
 
 
 var closeButton = document.createElement('button');
